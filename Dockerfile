@@ -19,6 +19,7 @@ RUN conda install -c conda-forge --quiet --yes \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
 
-RUN mkdir -p /srv/nbgrader/exchange && \
-    chmod ugo+rw /srv/nbgrader/exchange
+RUN jupyter nbextension install --sys-prefix --py nbgrader --overwrite && \
+    jupyter nbextension enable --sys-prefix --py nbgrader && \
+    jupyter serverextension enable --sys-prefix --py nbgrader
 
