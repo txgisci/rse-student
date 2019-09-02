@@ -19,6 +19,6 @@ RUN conda install -c conda-forge --quiet --yes \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
 
-RUN mkdir /srv/nbgrader/exchange && \
+RUN mkdir -p /srv/nbgrader/exchange && \
     chmod ugo+rw /srv/nbgrader/exchange
 
