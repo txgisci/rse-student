@@ -14,12 +14,14 @@ RUN conda install -c conda-forge --quiet --yes \
     'matplotlib' \
     'folium' \
     'rise' && \
-    jupyter serverextension enable --py jupyterlab --sys-prefix && \
+    jupyter serverextension enable --py jupyterlab --system && \
+    jupyter nbextension install --system --py jupyterlab --overwrite && \
+    jupyter nbextension enable --system --py jupyterlab
     conda clean --all -f -y && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
 
-RUN jupyter nbextension install --sys-prefix --py nbgrader --overwrite && \
-    jupyter nbextension enable --sys-prefix --py nbgrader && \
-    jupyter serverextension enable --sys-prefix --py nbgrader
+# RUN jupyter nbextension install --sys-prefix --py nbgrader --overwrite && \
+#     jupyter nbextension enable --sys-prefix --py nbgrader && \
+#     jupyter serverextension enable --sys-prefix --py nbgrader
 
