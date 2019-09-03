@@ -14,8 +14,8 @@ RUN conda install -c conda-forge --quiet --yes \
     'folium' \
     'rise' && \
     jupyter serverextension enable --py jupyterlab --sys-prefix && \
-    jupyter nbextension install --sys-prefix --py jupyterlab --overwrite && \
-    jupyter nbextension enable --sys-prefix --py jupyterlab && \
+    jupyter nbextension install --sys-prefix --py nbgrader --overwrite && \
+    jupyter nbextension enable --sys-prefix --py nbgrader && \
     conda clean --all -f -y && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
