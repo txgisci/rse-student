@@ -21,6 +21,6 @@ RUN conda install -c conda-forge --quiet --yes \
     fix-permissions /home/$NB_USER
 
 RUN mkdir -p /srv/nbgrader/exchange && \
-    fix-permissions /srv/nbgrader/exchange
+    chmod 777 /srv/nbgrader/exchange
 
 USER jovyan
