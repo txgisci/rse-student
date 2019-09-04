@@ -3,6 +3,8 @@ FROM $BASE_CONTAINER
 
 LABEL maintainer="Nate Currit <currit@txstate.edu>"
 
+USER root
+
 # Install packages used in 7316
 RUN conda install -c conda-forge --quiet --yes \
     'nbgrader' \
@@ -21,6 +23,6 @@ RUN conda install -c conda-forge --quiet --yes \
     fix-permissions /home/$NB_USER
 
 RUN mkdir -p /srv/nbgrader/exchange && \
-    chmod 777 /srv/nbgrader/exchange
+    fix-permissions /srv/nbgrader/exchange
 
 USER jovyan
