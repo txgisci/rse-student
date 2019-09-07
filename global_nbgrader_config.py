@@ -1,8 +1,13 @@
+# From https://nbgrader.readthedocs.io/en/stable/configuration/jupyterhub_config.html#jupyterhub-authentication
+from nbgrader.auth import JupyterHubAuthPlugin
+
 ##############################################################################
 # Global config for nbgrader
 ##############################################################################
 
 c = get_config()
+c.Exchange.path_includes_course = True # From line 662
+c.Authenticator.plugin_class = JupyterHubAuthPlugin # From line 665
 
 ###############################################################################
 # Begin additions by nbgrader quickstart
@@ -10,7 +15,7 @@ c = get_config()
 
 # You only need this if you are running nbgrader on a shared
 # server set up.
-c.Exchange.course_id = "rse"
+# c.Exchange.course_id = "rse"
 
 # Update this list with other assignments you want
 # c.CourseDirectory.db_assignments = [
@@ -653,7 +658,11 @@ c.Exchange.course_id = "rse"
 #  the course name. If this is `False`, then the path will be something like
 #  `./ps1`. If this is `True`, then the path will be something like
 #  `./course123/ps1`.
-#c.Exchange.path_includes_course = False
+# From https://nbgrader.readthedocs.io/en/stable/configuration/jupyterhub_config.html#jupyterhub-authentication
+# c.Exchange.path_includes_course = True
+
+# From https://nbgrader.readthedocs.io/en/stable/configuration/jupyterhub_config.html#jupyterhub-authentication
+# c.Authenticator.plugin_class = JupyterHubAuthPlugin
 
 ## The nbgrader exchange directory writable to everyone. MUST be preexisting.
 c.Exchange.root = '/srv/nbgrader/exchange'

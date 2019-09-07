@@ -15,9 +15,13 @@ RUN conda install -c conda-forge --quiet --yes \
     'rasterstats' \
     'folium' \
     'rise' && \
-    jupyter serverextension enable --py jupyterlab --sys-prefix && \
-    # jupyter nbextension install --sys-prefix --py nbgrader --overwrite && \
-    # jupyter nbextension enable --sys-prefix --py nbgrader && \
+    # jupyter serverextension enable --py jupyterlab --sys-prefix && \
+    # The nbgrader extensions create_assignment, formgrader and course_list are disabled for students 
+    jupyter nbextension disable --sys-prefix create_assignment/main && \
+    jupyter nbextension disable --sys-prefix formgrader/main --section=tree && \
+    jupyter serverextension disable --sys-prefix nbgrader.server_extensions.formgrader && \
+    jupyter nbextension disable --sys-prefix course_list/main --section=tree && \
+    jupyter serverextension disable --sys-prefix nbgrader.server_extensions.course_list && \
     conda clean --all -f -y && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER && \
